@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  api:
+    container_name: model_api
+    image: leommontesanti/kaggle_creditcardfraud_model_api:latest
+    networks:
+      - local_net
+    ports:
+      -"5000:5000"
