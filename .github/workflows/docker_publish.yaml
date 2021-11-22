@@ -12,6 +12,11 @@ jobs:
         run: |
           pip install -r requirements.txt
           python train.py
+      - name: Copy files for docker api folder
+        run: |
+          cp ./config.json ./docker/model_api/
+          cp ./temp/scaler.joblib ./docker/model_api/
+          cp ./temp/model.joblib ./docker/model_api/
       - name: Docker Login
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
