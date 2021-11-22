@@ -1,0 +1,26 @@
+name: model_metrics
+on:
+  push:
+    branches:
+      - main
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Train model
+        run: |
+          pip install -r requirements.txt
+          python train.py
+      - name: Docker Login
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Docker build model api
+        run: |
+          docker build ./docker/model_api/ -t leommontesanti/kaggle_creditcardfraud_model_api:latest
+      - name: Docker push
+        run: |
+          docker push leommontesanti/kaggle_creditcardfraud_model_api:latest

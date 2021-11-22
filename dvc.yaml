@@ -1,0 +1,11 @@
+stages:
+  train:
+    cmd: python train.py
+    deps:
+    - train.py
+    outs:
+    - ./temp/auc_learning_curve.png
+    - ./temp/logloss_learning_curve.png
+    metrics:
+    - metrics.json:
+        cache: false

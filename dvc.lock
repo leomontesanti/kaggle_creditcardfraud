@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: python train.py
+    deps:
+    - path: train.py
+      md5: 927a3dc67caaca1fa5dd4f143dfc2c3c
+      size: 3930
+    outs:
+    - path: ./temp/auc_learning_curve.png
+      md5: 69c133f687d1622c82f9154d44711913
+      size: 17921
+    - path: ./temp/logloss_learning_curve.png
+      md5: e4c8188af3a7ee4a00d08384b8bea915
+      size: 13794
+    - path: metrics.json
+      md5: 79ada7a53266bf1d7d9fef793c0358e2
+      size: 105
