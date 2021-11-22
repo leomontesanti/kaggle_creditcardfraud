@@ -113,17 +113,14 @@ X_val, y_val = pre_processing(df_val)
 w_array = get_class_weight(y_train)
 
 xgb_model_best = xgb.XGBClassifier(
-    objective='binary:logistic',
-    colsample_bylevel = 0.4,
-    colsample_bytree = 0.1,
+    colsample_bylevel = 0.8999999999999999,
+    colsample_bytree = 0.7,
     learning_rate = 0.1,
-    max_depth = 9,
-    n_estimators = 390,
-    reg_alpha = 0.0,
-    reg_lambda = 0.75
+    max_depth = 6,
+    n_estimators = 180,
+    reg_alpha = 0.75,
+    reg_lambda = 0.25
 )
-
-print(X_train.head(1))
 
 eval_set = [(X_train, y_train), (X_val, y_val)]
 xgb_model_best.fit(X_train, y_train, eval_metric=["auc","logloss"], eval_set=eval_set, verbose=True, sample_weight=w_array)
