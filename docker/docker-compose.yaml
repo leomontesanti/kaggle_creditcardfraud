@@ -8,3 +8,17 @@ services:
       - local_net
     ports:
       -"5000:5000"
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d/
+  bathc_process:
+    image: leommontesanti/kaggle_creditcardfraud_batch:latest
+    links:
+      - db
+    ports:
+      - "5001:5001"

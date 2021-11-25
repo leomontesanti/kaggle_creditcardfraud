@@ -1,0 +1,6 @@
+flask
+pandas
+sklearn
+xgboost
+joblib
+mysql-connector
