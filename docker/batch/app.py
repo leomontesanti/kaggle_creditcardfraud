@@ -73,7 +73,7 @@ try:
         
         except (sql.Error,sql.Warning) as e:
             conn.close()
-            print(e)
+            error_log('MySQL Error -> please check logs.txt file', error=e)
         
 
 except Exception as e:
